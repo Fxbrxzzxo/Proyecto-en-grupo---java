@@ -11,6 +11,6 @@ package com.mycompany.proyecto_5;
 public class Proyecto_5 {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        System.out.println("klk menol!");
     }
 }
