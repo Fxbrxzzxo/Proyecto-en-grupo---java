@@ -22,6 +22,11 @@ public class Sala {
     }
 
     public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+
     public int getNumero() { return numero; }
+    public void setNumero(int numero) { this.numero = numero; }
+
     public int getCapacidad() { return capacidad; }
+    public void setCapacidad(int capacidad) { this.capacidad = capacidad; }
 }

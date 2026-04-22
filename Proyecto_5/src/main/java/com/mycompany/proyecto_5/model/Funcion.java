@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.proyecto_5.model;
-import java.time.LocalDateTime;
 
 
 /**
@@ -13,21 +12,28 @@ import java.time.LocalDateTime;
 public class Funcion {
    
      private int id;
-    private Pelicula pelicula;
-    private Sala sala;
-    private LocalDateTime horario;
+    private int peliculaId;
+    private int salaId;
+    private String horario;
 
     public Funcion() {}
 
-    public Funcion(int id, Pelicula pelicula, Sala sala, LocalDateTime horario) {
+    public Funcion(int id, int peliculaId, int salaId, String horario) {
         this.id = id;
-        this.pelicula = pelicula;
-        this.sala = sala;
+        this.peliculaId = peliculaId;
+        this.salaId = salaId;
         this.horario = horario;
     }
 
     public int getId() { return id; }
-    public Pelicula getPelicula() { return pelicula; }
-    public Sala getSala() { return sala; }
-    public LocalDateTime getHorario() { return horario; }
+    public void setId(int id) { this.id = id; }
+
+    public int getPeliculaId() { return peliculaId; }
+    public void setPeliculaId(int peliculaId) { this.peliculaId = peliculaId; }
+
+    public int getSalaId() { return salaId; }
+    public void setSalaId(int salaId) { this.salaId = salaId; }
+
+    public String getHorario() { return horario; }
+    public void setHorario(String horario) { this.horario = horario; }
 }
