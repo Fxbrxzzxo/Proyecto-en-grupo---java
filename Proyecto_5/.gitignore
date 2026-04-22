@@ -1,0 +1,14 @@
+# 🔐 NO subir contraseñas de la BD
+src/main/resources/db.properties
+
+# 📦 Archivos compilados de Maven
+target/
+
+# 🧠 Archivos temporales de NetBeans
+nbproject/private/
+build/
+dist/
+
+# 🖥️ Archivos del sistema
+.DS_Store
+Thumbs.db
