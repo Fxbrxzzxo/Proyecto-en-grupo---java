@@ -9,19 +9,24 @@ package com.mycompany.proyecto_5.model;
  * @author LENOVO
  */
 public class Usuario {
-     private int id;
+private int idUsuario;
     private String nombre;
-    private String rol;
+    private String correo;
 
     public Usuario() {}
 
-    public Usuario(int id, String nombre, String rol) {
-        this.id = id;
+    public Usuario(int idUsuario, String nombre, String correo) {
+        this.idUsuario = idUsuario;
         this.nombre = nombre;
-        this.rol = rol;
+        this.correo = correo;
     }
 
-    public int getId() { return id; }
+    public int getIdUsuario() { return idUsuario; }
+    public void setIdUsuario(int idUsuario) { this.idUsuario = idUsuario; }
+
     public String getNombre() { return nombre; }
-    public String getRol() { return rol; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
+
+    public String getCorreo() { return correo; }
+    public void setCorreo(String correo) { this.correo = correo; }
 }

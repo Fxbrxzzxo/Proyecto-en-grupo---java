@@ -3,34 +3,46 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.proyecto_5.model;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  *
  * @author LENOVO
  */
 public class Reserva {
-    private int id;
-    private Funcion funcion;
-    private Asiento asiento;
+    private int idReserva;
+    private int idUsuario;
+    private int idFuncion;
+    private int idAsiento;
+    private Date fechaReserva;
     private String estado;
-    private String codigo;
-    private LocalDateTime fecha;
 
     public Reserva() {}
 
-    public Reserva(int id, Funcion funcion, Asiento asiento, String estado, String codigo) {
-        this.id = id;
-        this.funcion = funcion;
-        this.asiento = asiento;
+    public Reserva(int idReserva, int idUsuario, int idFuncion, int idAsiento, Date fechaReserva, String estado) {
+        this.idReserva = idReserva;
+        this.idUsuario = idUsuario;
+        this.idFuncion = idFuncion;
+        this.idAsiento = idAsiento;
+        this.fechaReserva = fechaReserva;
         this.estado = estado;
-        this.codigo = codigo;
-        this.fecha = LocalDateTime.now();
     }
 
-    public int getId() { return id; }
-    public Funcion getFuncion() { return funcion; }
-    public Asiento getAsiento() { return asiento; }
+    public int getIdReserva() { return idReserva; }
+    public void setIdReserva(int idReserva) { this.idReserva = idReserva; }
+
+    public int getIdUsuario() { return idUsuario; }
+    public void setIdUsuario(int idUsuario) { this.idUsuario = idUsuario; }
+
+    public int getIdFuncion() { return idFuncion; }
+    public void setIdFuncion(int idFuncion) { this.idFuncion = idFuncion; }
+
+    public int getIdAsiento() { return idAsiento; }
+    public void setIdAsiento(int idAsiento) { this.idAsiento = idAsiento; }
+
+    public Date getFechaReserva() { return fechaReserva; }
+    public void setFechaReserva(Date fechaReserva) { this.fechaReserva = fechaReserva; }
+
     public String getEstado() { return estado; }
-    public String getCodigo() { return codigo; }
+    public void setEstado(String estado) { this.estado = estado; }
 }

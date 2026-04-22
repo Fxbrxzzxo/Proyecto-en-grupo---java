@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.proyecto_5.model;
+import java.util.Date;
 
 
 /**
@@ -11,29 +12,35 @@ package com.mycompany.proyecto_5.model;
  */
 public class Funcion {
    
-     private int id;
-    private int peliculaId;
-    private int salaId;
-    private String horario;
+    private int idFuncion;
+    private int idSala;
+    private int idPelicula;
+    private Date fechaHora;
+    private int cupoDisponible;
 
     public Funcion() {}
 
-    public Funcion(int id, int peliculaId, int salaId, String horario) {
-        this.id = id;
-        this.peliculaId = peliculaId;
-        this.salaId = salaId;
-        this.horario = horario;
+    public Funcion(int idFuncion, int idSala, int idPelicula, Date fechaHora, int cupoDisponible) {
+        this.idFuncion = idFuncion;
+        this.idSala = idSala;
+        this.idPelicula = idPelicula;
+        this.fechaHora = fechaHora;
+        this.cupoDisponible = cupoDisponible;
     }
 
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    public int getIdFuncion() { return idFuncion; }
+    public void setIdFuncion(int idFuncion) { this.idFuncion = idFuncion; }
 
-    public int getPeliculaId() { return peliculaId; }
-    public void setPeliculaId(int peliculaId) { this.peliculaId = peliculaId; }
+    public int getIdSala() { return idSala; }
+    public void setIdSala(int idSala) { this.idSala = idSala; }
 
-    public int getSalaId() { return salaId; }
-    public void setSalaId(int salaId) { this.salaId = salaId; }
+    public int getIdPelicula() { return idPelicula; }
+    public void setIdPelicula(int idPelicula) { this.idPelicula = idPelicula; }
 
-    public String getHorario() { return horario; }
-    public void setHorario(String horario) { this.horario = horario; }
+    public Date getFechaHora() { return fechaHora; }
+    public void setFechaHora(Date fechaHora) { this.fechaHora = fechaHora; }
+
+    public int getCupoDisponible() { return cupoDisponible; }
+    public void setCupoDisponible(int cupoDisponible) { this.cupoDisponible = cupoDisponible; }
+     
 }
