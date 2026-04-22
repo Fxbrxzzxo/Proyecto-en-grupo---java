@@ -1,0 +1,6 @@
+
+CREATE DATABASE CineStarDB;
+GO
+
+USE CineStarDB;
+GO
