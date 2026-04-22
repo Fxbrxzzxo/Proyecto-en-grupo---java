@@ -19,19 +19,27 @@ public class ConexionBD {
         try {
             if (conexion == null || conexion.isClosed()) {
 
-                // Leer archivo db.properties
                 Properties props = new Properties();
                 InputStream input = ConexionBD.class
                         .getClassLoader()
                         .getResourceAsStream("db.properties");
 
+                if (input == null) {
+                    System.out.println("No se encontró db.properties");
+                    return null;
+                }
+
                 props.load(input);
+                input.close();
 
                 String url = props.getProperty("db.url");
                 String user = props.getProperty("db.user");
                 String password = props.getProperty("db.password");
 
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+
                 conexion = DriverManager.getConnection(url, user, password);
+
                 System.out.println("Conectado a SQL Server");
             }
 
@@ -41,5 +49,6 @@ public class ConexionBD {
         }
         return conexion;
     }
+   
     
 }
