@@ -102,7 +102,7 @@ setResizable(false);
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(250, 250, 250))
             .addGroup(layout.createSequentialGroup()
-                .addGap(331, 331, 331)
+                .addGap(294, 294, 294)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
