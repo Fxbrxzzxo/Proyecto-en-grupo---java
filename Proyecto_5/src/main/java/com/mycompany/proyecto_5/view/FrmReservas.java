@@ -3,12 +3,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.proyecto_5.view;
+import com.mycompany.proyecto_5.dao.FuncionDAO;
+import com.mycompany.proyecto_5.dao.UsuarioDAO;
+import com.mycompany.proyecto_5.model.Funcion;
+import com.mycompany.proyecto_5.model.Usuario;
+import java.util.List;
 
 /**
  *
  * @author LENOVO
  */
 public class FrmReservas extends javax.swing.JFrame {
+    
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmReservas.class.getName());
 
@@ -17,7 +23,7 @@ public class FrmReservas extends javax.swing.JFrame {
      */
     public FrmReservas() {
         initComponents();
-        setSize(750, 550);
+        setSize(950, 600);
 setLocationRelativeTo(null);
 setResizable(false);
     }

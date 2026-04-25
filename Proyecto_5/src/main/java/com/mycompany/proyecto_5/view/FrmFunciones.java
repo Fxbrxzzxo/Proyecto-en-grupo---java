@@ -17,7 +17,7 @@ public class FrmFunciones extends javax.swing.JFrame {
      */
     public FrmFunciones() {
         initComponents();
-        setSize(750, 550);
+        setSize(900, 700);
 setLocationRelativeTo(null);
 setResizable(false);
     }
