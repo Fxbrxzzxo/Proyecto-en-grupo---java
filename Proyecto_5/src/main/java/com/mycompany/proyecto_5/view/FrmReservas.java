@@ -3,11 +3,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.proyecto_5.view;
+import com.mycompany.proyecto_5.dao.AsientoDAO;
 import com.mycompany.proyecto_5.dao.FuncionDAO;
+import com.mycompany.proyecto_5.dao.ReservaDAO;
 import com.mycompany.proyecto_5.dao.UsuarioDAO;
-import com.mycompany.proyecto_5.model.Funcion;
+import com.mycompany.proyecto_5.model.Asiento;
 import com.mycompany.proyecto_5.model.Usuario;
+import com.mycompany.proyecto_5.service.ReservaService;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -17,15 +28,39 @@ public class FrmReservas extends javax.swing.JFrame {
     
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmReservas.class.getName());
+    
+     private final FuncionDAO funcionDAO         = new FuncionDAO();
+    private final UsuarioDAO usuarioDAO         = new UsuarioDAO();
+    private final AsientoDAO asientoDAO         = new AsientoDAO();
+    private final ReservaDAO reservaDAO         = new ReservaDAO();
+    private final ReservaService reservaService = new ReservaService();
+ 
+    private int asientoSeleccionadoId = -1;
+    private final Map<Integer, javax.swing.JButton> botonesAsiento = new HashMap<>();
+ 
+    private static final Color COLOR_LIBRE   = new Color(70, 180, 70);
+    private static final Color COLOR_OCUPADO = new Color(200, 50, 50);
+    private static final Color COLOR_SELEC   = new Color(50, 100, 220);
 
     /**
      * Creates new form FrmReservas
      */
     public FrmReservas() {
         initComponents();
-        setSize(950, 600);
-setLocationRelativeTo(null);
-setResizable(false);
+        setSize(950, 900);
+        setLocationRelativeTo(null);
+        setResizable(false);
+        
+         btnReservar.addActionListener(e -> reservar());
+        btnCancelar.addActionListener(e -> cancelar());
+        btnVolver.addActionListener(e -> {
+            new FrmPrincipal().setVisible(true);
+            this.dispose();
+        });
+        cmbFunciones.addActionListener(e -> actualizarPanelAsientos());
+        
+        cargarCombos();
+        actualizarPanelAsientos();
     }
 
     /**
@@ -146,10 +181,139 @@ setResizable(false);
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+    private void cargarCombos() {
+        cmbFunciones.removeAllItems();
+        for (String f : funcionDAO.listarFunciones())
+            cmbFunciones.addItem(f);
+ 
+        cmbUsuarios.removeAllItems();
+        for (Usuario u : usuarioDAO.listarUsuarios())
+            cmbUsuarios.addItem(u.getIdUsuario() + " - " + u.getNombre());
+    }
+    
+    private void actualizarPanelAsientos() {
+        panelAsientos.setLayout(new GridBagLayout());
+        panelAsientos.removeAll();
+        botonesAsiento.clear();
+        asientoSeleccionadoId = -1;
+ 
+        int idFuncion = obtenerIdFuncionSeleccionada();
+        if (idFuncion < 0) {
+            panelAsientos.revalidate();
+            panelAsientos.repaint();
+            return;
+        }
+ 
+        int idSala = funcionDAO.obtenerIdSala(idFuncion);
+        if (idSala < 0) {
+            panelAsientos.revalidate();
+            panelAsientos.repaint();
+            return;
+        }
+ 
+        List<Asiento> asientos = asientoDAO.asientosPorSala(idSala);
+        List<Integer> ocupados = asientoDAO.asientosOcupados(idFuncion);
+ 
+        // Agrupar asientos por fila (A, B, C...)
+        Map<String, List<Asiento>> porFila = new java.util.LinkedHashMap<>();
+        for (Asiento a : asientos)
+            porFila.computeIfAbsent(a.getFila(), k -> new java.util.ArrayList<>()).add(a);
+ 
+        panelAsientos.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(3, 3, 3, 3);
+ 
+        int row = 0;
+        for (Map.Entry<String, List<Asiento>> entry : porFila.entrySet()) {
+            gbc.gridx = 0;
+            gbc.gridy = row;
+            javax.swing.JLabel lbl = new javax.swing.JLabel(entry.getKey());
+            lbl.setFont(new Font("Segoe UI", Font.BOLD, 12));
+            panelAsientos.add(lbl, gbc);
+ 
+            int col = 1;
+            for (Asiento a : entry.getValue()) {
+                boolean ocupado = ocupados.contains(a.getIdAsiento());
+                javax.swing.JButton btn = new javax.swing.JButton(String.valueOf(a.getNumero()));
+                btn.setPreferredSize(new Dimension(38, 32));
+                btn.setFont(new Font("Segoe UI", Font.PLAIN, 11));
+                btn.setBackground(ocupado ? COLOR_OCUPADO : COLOR_LIBRE); // rojo u ocupado
+                btn.setForeground(Color.WHITE);
+                btn.setOpaque(true);
+                btn.setBorderPainted(false);
+                btn.setEnabled(!ocupado); // deshabilitado si esta ocupado
+                final int id = a.getIdAsiento();
+                btn.addActionListener(e -> seleccionarAsiento(id));
+                botonesAsiento.put(a.getIdAsiento(), btn);
+                gbc.gridx = col;
+                gbc.gridy = row;
+                panelAsientos.add(btn, gbc);
+                col++;
+            }
+            row++;
+        }
+ 
+        panelAsientos.revalidate();
+        panelAsientos.repaint();
+    }
+    
+     private void seleccionarAsiento(int idAsiento) {
+        if (asientoSeleccionadoId >= 0 && botonesAsiento.containsKey(asientoSeleccionadoId))
+            botonesAsiento.get(asientoSeleccionadoId).setBackground(COLOR_LIBRE);
+        asientoSeleccionadoId = idAsiento;
+        botonesAsiento.get(idAsiento).setBackground(COLOR_SELEC);
+    }
+     
+      private void reservar() {
+        int idFuncion = obtenerIdFuncionSeleccionada();
+        int idUsuario = obtenerIdUsuarioSeleccionado();
+        if (idFuncion < 0 || idUsuario < 0) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Selecciona función y usuario válidos.");
+            return;
+        }
+        if (asientoSeleccionadoId < 0) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Selecciona un asiento en el mapa.");
+            return;
+        }
+        String resultado = reservaService.reservarAsiento(idUsuario, idFuncion, asientoSeleccionadoId);
+        javax.swing.JOptionPane.showMessageDialog(this, resultado);
+        actualizarPanelAsientos(); // refresca el mapa tras reservar
+    }
+      
+       private void cancelar() {
+        int idUsuario = obtenerIdUsuarioSeleccionado();
+        if (idUsuario < 0) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Selecciona un usuario válido.");
+            return;
+        }
+        String input = javax.swing.JOptionPane.showInputDialog(this, "ID de la reserva a cancelar:");
+        if (input == null || input.isBlank()) return;
+        try {
+            boolean ok = reservaDAO.cancelarReserva(Integer.parseInt(input.trim()), idUsuario);
+            javax.swing.JOptionPane.showMessageDialog(this,
+                ok ? "Reserva cancelada." : "No se pudo cancelar. Verifica el ID.");
+            actualizarPanelAsientos(); // refresca el mapa tras cancelar
+        } catch (NumberFormatException ex) {
+            javax.swing.JOptionPane.showMessageDialog(this, "ID inválido.");
+        }
+    }
+       
+        private int obtenerIdFuncionSeleccionada() {
+        Object sel = cmbFunciones.getSelectedItem();
+        if (sel == null) return -1;
+        try { return Integer.parseInt(sel.toString().split(" - ")[0].trim()); }
+        catch (NumberFormatException e) { return -1; }
+    }
+        private int obtenerIdUsuarioSeleccionado() {
+        Object sel = cmbUsuarios.getSelectedItem();
+        if (sel == null) return -1;
+        try { return Integer.parseInt(sel.toString().split(" - ")[0].trim()); }
+        catch (NumberFormatException e) { return -1; }
+    }
+    
+    
+    
+        public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

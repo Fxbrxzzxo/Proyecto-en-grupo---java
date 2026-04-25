@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import com.mycompany.proyecto_5.model.Asiento;
 
 
 /**
@@ -37,6 +38,25 @@ public class AsientoDAO {
             e.printStackTrace();
         }
 
+        return lista;
+    }
+     
+      public List<Asiento> asientosPorSala(int idSala) {
+        List<Asiento> lista = new ArrayList<>();
+        String sql = "SELECT idAsiento, idSala, fila, numero FROM Asiento WHERE idSala = ? ORDER BY fila, numero";
+        try (Connection con = ConexionBD.getConexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, idSala);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                lista.add(new Asiento(
+                    rs.getInt("idAsiento"),
+                    rs.getInt("idSala"),
+                    rs.getString("fila"),
+                    rs.getInt("numero")
+                ));
+            }
+        } catch (Exception e) { e.printStackTrace(); }
         return lista;
     }
 }

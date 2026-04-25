@@ -78,6 +78,9 @@ INSERT INTO Funcion (idSala, idPelicula, fechaHora, cupoDisponible) VALUES
 (2, 2, '2026-04-23 20:00', 100),
 (3, 3, '2026-04-23 22:00', 100);
 
+INSERT INTO Usuario (nombre, correo) VALUES ('Juan Perez', 'juan@email.com');
+INSERT INTO Usuario (nombre, correo) VALUES ('Maria Lopez', 'maria@email.com');
+
 DECLARE @sala INT = 1;
 
 WHILE @sala <= 3
