@@ -80,6 +80,8 @@ INSERT INTO Funcion (idSala, idPelicula, fechaHora, cupoDisponible) VALUES
 
 INSERT INTO Usuario (nombre, correo) VALUES ('Juan Perez', 'juan@email.com');
 INSERT INTO Usuario (nombre, correo) VALUES ('Maria Lopez', 'maria@email.com');
+INSERT INTO Usuario (nombre, correo) VALUES ('Pepe Alvarez', 'pepe@email.com');
+INSERT INTO Usuario (nombre, correo) VALUES ('Karla Sanchez', 'karla@email.com');
 
 DECLARE @sala INT = 1;
 
