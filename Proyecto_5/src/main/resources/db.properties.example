@@ -1,0 +1,3 @@
+db.url=jdbc:sqlserver://localhost:1433;databaseName=CineStarDB;encrypt=false;trustServerCertificate=true
+db.user=TU_USUARIO
+db.password=TU_CONTRASEÑA
