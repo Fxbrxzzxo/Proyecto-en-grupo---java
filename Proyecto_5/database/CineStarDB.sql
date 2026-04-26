@@ -64,9 +64,9 @@ CREATE TABLE HistorialCancelaciones (
 );
 
 INSERT INTO Sala (nombre, capacidad) VALUES
-('Sala 1', 100),
-('Sala 2', 100),
-('Sala 3', 100);
+('Sala 1', 90),
+('Sala 2', 90),
+('Sala 3', 90);
 
 INSERT INTO Pelicula (titulo, duracionMin, clasificacion) VALUES
 ('Avengers', 180, 'PG13'),
