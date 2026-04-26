@@ -138,9 +138,8 @@ setResizable(false);
     }//GEN-LAST:event_btnReservarEnActionPerformed
 
     private void btnMisReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMisReservasActionPerformed
-        FrmReservas r = new FrmReservas();
-        r.setVisible(true);
-        this.dispose();
+        new FrmVerReservas().setVisible(true);
+    this.dispose();
     }//GEN-LAST:event_btnMisReservasActionPerformed
 
     /**

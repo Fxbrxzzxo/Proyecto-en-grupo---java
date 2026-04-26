@@ -109,4 +109,36 @@ public class ReservaDAO {
 
         return null;
     }
+    public java.util.List<Object[]> listarReservasDetalle(int idUsuario) {
+    String sql = "SELECT r.idReserva, u.nombre, p.titulo, s.nombre, " +
+                 "a.fila + '-' + CAST(a.numero AS varchar) AS asiento, " +
+                 "CONVERT(varchar, r.fechaReserva, 23), r.estado " +
+                 "FROM Reserva r " +
+                 "JOIN Usuario u ON r.idUsuario = u.idUsuario " +
+                 "JOIN Funcion f ON r.idFuncion = f.idFuncion " +
+                 "JOIN Pelicula p ON f.idPelicula = p.idPelicula " +
+                 "JOIN Sala s ON f.idSala = s.idSala " +
+                 "JOIN Asiento a ON r.idAsiento = a.idAsiento " +
+                 "WHERE r.idUsuario = ?";
+    java.util.List<Object[]> lista = new java.util.ArrayList<>();
+    try (Connection con = ConexionBD.getConexion();
+         PreparedStatement ps = con.prepareStatement(sql)) {
+        ps.setInt(1, idUsuario);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            lista.add(new Object[]{
+                rs.getInt(1),     // idReserva
+                rs.getString(2),  // usuario
+                rs.getString(3),  // película
+                rs.getString(4),  // sala
+                rs.getString(5),  // asiento (ej: E-1)
+                rs.getString(6),  // fecha
+                rs.getString(7)   // estado
+            });
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return lista;
+}
 }
