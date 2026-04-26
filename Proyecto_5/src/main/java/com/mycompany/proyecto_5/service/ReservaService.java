@@ -30,7 +30,7 @@ public class ReservaService {
             }
 
             
-            String sqlCupo = "SELECT cupoDisponible FROM Funcion WITH (UPDLOCK, ROWLOCK) WHERE idFuncion = ?";
+            String sqlCupo = "SELECT cupoDisponible FROM Funcion WHERE idFuncion = ?";
             PreparedStatement psCupo = con.prepareStatement(sqlCupo);
             psCupo.setInt(1, idFuncion);
 
@@ -68,7 +68,7 @@ public class ReservaService {
                 ex.printStackTrace();
             }
             e.printStackTrace();
-            return "Error al reservar";
+            return "Error: " + e.getMessage();
         }
     }
 }

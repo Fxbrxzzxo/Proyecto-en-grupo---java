@@ -51,14 +51,12 @@ public class FrmReservas extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         
-         btnReservar.addActionListener(e -> reservar());
-        btnCancelar.addActionListener(e -> cancelar());
+          btnCancelar.addActionListener(e -> cancelar());
         btnVolver.addActionListener(e -> {
             new FrmPrincipal().setVisible(true);
             this.dispose();
         });
-        cmbFunciones.addActionListener(e -> actualizarPanelAsientos());
-        
+ 
         cargarCombos();
         actualizarPanelAsientos();
     }
@@ -184,13 +182,14 @@ public class FrmReservas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservarActionPerformed
-        // TODO add your handling code here:
+        reservar(); 
     }//GEN-LAST:event_btnReservarActionPerformed
 
     private void cmbFuncionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbFuncionesActionPerformed
-        // TODO add your handling code here:
+        actualizarPanelAsientos(); 
     }//GEN-LAST:event_cmbFuncionesActionPerformed
-
+    
+    
     private void cargarCombos() {
         cmbFunciones.removeAllItems();
         for (String f : funcionDAO.listarFunciones())

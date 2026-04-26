@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.proyecto_5.view;
+import com.mycompany.proyecto_5.dao.FuncionDAO;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -11,6 +14,8 @@ package com.mycompany.proyecto_5.view;
 public class FrmFunciones extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmFunciones.class.getName());
+    
+    private FuncionDAO funcionDAO = new FuncionDAO();
 
     /**
      * Creates new form FrmFunciones
@@ -18,8 +23,38 @@ public class FrmFunciones extends javax.swing.JFrame {
     public FrmFunciones() {
         initComponents();
         setSize(900, 700);
-setLocationRelativeTo(null);
-setResizable(false);
+        setLocationRelativeTo(null);
+        setResizable(false);
+        jButton1.addActionListener(this::jButton1ActionPerformed);
+        cargarFunciones();
+    }
+    
+    private void cargarFunciones() {
+ 
+        // ✅ AGREGADO: modelo no editable, se define aquí fuera del initComponents
+        DefaultTableModel model = new DefaultTableModel(
+            new String[]{"ID", "Película", "Sala", "Fecha", "Hora", "Cupos"}, 0
+        ) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        jTable2.setModel(model);
+ 
+        // Llama al DAO — devuelve Object[] con: {id, pelicula, sala, fecha, hora, cupos}
+        List<Object[]> funciones = funcionDAO.listarFuncionesDetalle();
+ 
+        for (Object[] fila : funciones) {
+            model.addRow(new Object[]{
+                fila[0], // ID Función
+                fila[1], // Película
+                fila[2], // Sala
+                fila[3], // Fecha
+                fila[4], // Hora
+                fila[5]  // Cupos disponibles
+            });
+        }
     }
 
     /**
@@ -90,6 +125,16 @@ setResizable(false);
     /**
      * @param args the command line arguments
      */
+    
+     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+        FrmPrincipal principal = new FrmPrincipal();
+        principal.setVisible(true);
+        this.dispose();
+    }
+    
+    
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
