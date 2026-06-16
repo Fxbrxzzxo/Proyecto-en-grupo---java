@@ -3,7 +3,7 @@
  */
 
 package com.mycompany.proyecto_5;
-import com.mycompany.proyecto_5.view.FrmPrincipal;
+import com.mycompany.proyecto_5.view.FrmLogin;
 
 /**
  *
@@ -12,9 +12,8 @@ import com.mycompany.proyecto_5.view.FrmPrincipal;
 public class Proyecto_5 {
 
    public static void main(String[] args) {
-        
-        FrmPrincipal frm = new FrmPrincipal();
-        frm.setLocationRelativeTo(null); // centra la ventana
-        frm.setVisible(true);       
+        java.awt.EventQueue.invokeLater(() -> {
+        new FrmLogin().setVisible(true);
+    }); 
     }       
 }

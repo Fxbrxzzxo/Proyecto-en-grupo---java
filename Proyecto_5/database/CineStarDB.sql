@@ -39,6 +39,7 @@ CREATE TABLE Usuario (
     idUsuario INT IDENTITY PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     correo VARCHAR(100) UNIQUE NOT NULL
+    clave VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE Reserva (
@@ -74,14 +75,14 @@ INSERT INTO Pelicula (titulo, duracionMin, clasificacion) VALUES
 ('Toy Story', 100, 'G');
 
 INSERT INTO Funcion (idSala, idPelicula, fechaHora, cupoDisponible) VALUES
-(1, 1, '2026-04-23 18:00', 100),
-(2, 2, '2026-04-23 20:00', 100),
-(3, 3, '2026-04-23 22:00', 100);
+(1, 1, '2026-04-23 18:00', 90),
+(2, 2, '2026-04-23 20:00', 90),
+(3, 3, '2026-04-23 22:00', 90);
 
-INSERT INTO Usuario (nombre, correo) VALUES ('Juan Perez', 'juan@email.com');
-INSERT INTO Usuario (nombre, correo) VALUES ('Maria Lopez', 'maria@email.com');
-INSERT INTO Usuario (nombre, correo) VALUES ('Pepe Alvarez', 'pepe@email.com');
-INSERT INTO Usuario (nombre, correo) VALUES ('Karla Sanchez', 'karla@email.com');
+INSERT INTO Usuario (nombre, correo) VALUES ('Juan Perez', 'juan@email.com','1234');
+INSERT INTO Usuario (nombre, correo) VALUES ('Maria Lopez', 'maria@email.com', '1234');
+INSERT INTO Usuario (nombre, correo) VALUES ('Pepe Alvarez', 'pepe@email.com', '1234');
+INSERT INTO Usuario (nombre, correo) VALUES ('Karla Sanchez', 'karla@email.com', '1234');
 
 DECLARE @sala INT = 1;
 
