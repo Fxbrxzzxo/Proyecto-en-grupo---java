@@ -23,7 +23,12 @@ public class FrmLogin extends javax.swing.JFrame {
      */
     public FrmLogin() {
         initComponents();
+        UsuarioDAO dao = new UsuarioDAO();
+     for (Usuario u : dao.listarUsuarios()) {
+     cmbCorreo.addItem(u.getCorreo());
+     }
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -37,12 +42,12 @@ public class FrmLogin extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtCorreo = new javax.swing.JTextField();
         txtClave = new javax.swing.JPasswordField();
         btnIngresar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        cmbCorreo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -104,8 +109,8 @@ public class FrmLogin extends javax.swing.JFrame {
                             .addComponent(jLabel3))
                         .addGap(27, 27, 27)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(146, 146, 146)
                         .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -117,11 +122,11 @@ public class FrmLogin extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(56, 56, 56)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
+                    .addComponent(cmbCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
@@ -153,19 +158,24 @@ public class FrmLogin extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         // TODO add your handling code here:
-         String correo = txtCorreo.getText().trim();
-    String clave = new String(txtClave.getPassword()).trim();
+         String correo = (String) cmbCorreo.getSelectedItem();
+        String clave = new String(txtClave.getPassword()).trim();
 
-    UsuarioDAO dao = new UsuarioDAO();
-    Usuario u = dao.autenticar(correo, clave);
+        if (clave.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingresa tu contraseña.");
+            return;
+        }
 
-    if (u != null) {
-        Sesion.setUsuarioActual(u);
-        new FrmPrincipal().setVisible(true);
-        this.dispose();
-    } else {
-        JOptionPane.showMessageDialog(this, "Correo o contraseña incorrectos.", "Error", JOptionPane.ERROR_MESSAGE);
-    }
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        Usuario u = usuarioDAO.autenticar(correo, clave);
+
+        if (u != null) {
+            Sesion.setUsuarioActual(u);
+            new FrmPrincipal().setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Correo o contraseña incorrectos.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     /**
@@ -196,12 +206,12 @@ public class FrmLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnSalir;
+    private javax.swing.JComboBox<String> cmbCorreo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField txtClave;
-    private javax.swing.JTextField txtCorreo;
     // End of variables declaration//GEN-END:variables
 }

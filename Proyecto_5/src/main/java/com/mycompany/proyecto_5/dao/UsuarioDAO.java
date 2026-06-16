@@ -22,7 +22,7 @@ public class UsuarioDAO {
     public List<Usuario> listarUsuarios() {
         List<Usuario> lista = new ArrayList<>();
 
-        String sql = "SELECT idUsuario, nombre FROM Usuario ORDER BY nombre";
+        String sql = "SELECT idUsuario, nombre, correo FROM Usuario ORDER BY nombre";
 
         try (Connection con = ConexionBD.getConexion();
              PreparedStatement ps = con.prepareStatement(sql);
@@ -32,6 +32,7 @@ public class UsuarioDAO {
                 Usuario u = new Usuario();
                 u.setIdUsuario(rs.getInt("idUsuario"));
                 u.setNombre(rs.getString("nombre"));
+                u.setCorreo(rs.getString("correo"));
                 lista.add(u);
             }
 

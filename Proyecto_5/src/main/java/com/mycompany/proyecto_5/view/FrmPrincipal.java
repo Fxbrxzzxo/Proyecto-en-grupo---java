@@ -37,12 +37,18 @@ setResizable(false);
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        btnFunciones = new javax.swing.JButton();
-        btnReservarEn = new javax.swing.JButton();
-        btnMisReservas = new javax.swing.JButton();
-        btnSalir = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu6 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenu7 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("CineStar - Sistema de Reservas");
@@ -53,112 +59,114 @@ setResizable(false);
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setPreferredSize(new java.awt.Dimension(700, 400));
 
-        btnFunciones.setBackground(new java.awt.Color(255, 204, 0));
-        btnFunciones.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        btnFunciones.setText("Ver Funciones");
-        btnFunciones.addActionListener(this::btnFuncionesActionPerformed);
-
-        btnReservarEn.setBackground(new java.awt.Color(255, 204, 0));
-        btnReservarEn.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        btnReservarEn.setText("Reservar Entradas");
-        btnReservarEn.addActionListener(this::btnReservarEnActionPerformed);
-
-        btnMisReservas.setBackground(new java.awt.Color(255, 204, 0));
-        btnMisReservas.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        btnMisReservas.setText("Mis Reservas");
-        btnMisReservas.addActionListener(this::btnMisReservasActionPerformed);
-
-        btnSalir.setBackground(new java.awt.Color(255, 0, 0));
-        btnSalir.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        btnSalir.setText("Salir");
-        btnSalir.addActionListener(this::btnSalirActionPerformed);
-
-        jPanel2.setBackground(new java.awt.Color(255, 0, 0));
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 28)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("CINESTAR");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(309, 309, 309)
-                .addComponent(jLabel1)
-                .addContainerGap(345, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel1)
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(247, 247, 247)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnReservarEn, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
-                    .addComponent(btnFunciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnMisReservas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(306, 306, 306)
+                .addComponent(jLabel1)
+                .addContainerGap(329, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addComponent(btnFunciones, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(btnReservarEn, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addComponent(btnMisReservas, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34))
+                .addGap(180, 180, 180)
+                .addComponent(jLabel1)
+                .addContainerGap(203, Short.MAX_VALUE))
         );
+
+        jMenuBar1.setBackground(new java.awt.Color(255, 0, 0));
+
+        jMenu1.setText("Funciones");
+
+        jMenuItem2.setText("Ver funciones");
+        jMenuItem2.addActionListener(this::jMenuItem2ActionPerformed);
+        jMenu1.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu5.setText("Reserva Entradas");
+
+        jMenuItem1.setText("Reservar Asiento");
+        jMenuItem1.addActionListener(this::jMenuItem1ActionPerformed);
+        jMenu5.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu5);
+
+        jMenu6.setText("Mis Reservas");
+
+        jMenuItem3.setText("Ver Mis Reservas");
+        jMenuItem3.addActionListener(this::jMenuItem3ActionPerformed);
+        jMenu6.add(jMenuItem3);
+
+        jMenuBar1.add(jMenu6);
+
+        jMenu7.setText("Cerrar Sesión");
+
+        jMenuItem4.setText("Cerrar Sesión");
+        jMenuItem4.addActionListener(this::jMenuItem4ActionPerformed);
+        jMenu7.add(jMenuItem4);
+
+        jMenuBar1.add(jMenu7);
+
+        jMenu2.setText("Salir");
+
+        jMenuItem5.setText("Salir");
+        jMenuItem5.addActionListener(this::jMenuItem5ActionPerformed);
+        jMenu2.add(jMenuItem5);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 789, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 808, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnFuncionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFuncionesActionPerformed
-        FrmFunciones f = new FrmFunciones();
-        f.setVisible(true);
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        new FrmFunciones().setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btnFuncionesActionPerformed
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_btnSalirActionPerformed
-
-    private void btnReservarEnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservarEnActionPerformed
-        FrmReservas r = new FrmReservas();
-        r.setVisible(true);
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        new FrmReservas().setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btnReservarEnActionPerformed
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void btnMisReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMisReservasActionPerformed
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
         new FrmVerReservas().setVisible(true);
-    this.dispose();
-    }//GEN-LAST:event_btnMisReservasActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+        new FrmLogin().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -186,12 +194,18 @@ setResizable(false);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnFunciones;
-    private javax.swing.JButton btnMisReservas;
-    private javax.swing.JButton btnReservarEn;
-    private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }
