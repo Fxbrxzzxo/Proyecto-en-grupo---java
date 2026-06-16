@@ -41,4 +41,29 @@ public class UsuarioDAO {
 
         return lista;
     }
+    public Usuario autenticar(String correo, String clave) {
+        String sql = "SELECT idUsuario, nombre, correo FROM Usuario WHERE correo = ? AND clave = ?";
+
+        try (Connection con = ConexionBD.getConexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, correo);
+            ps.setString(2, clave);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    Usuario u = new Usuario();
+                    u.setIdUsuario(rs.getInt("idUsuario"));
+                    u.setNombre(rs.getString("nombre"));
+                    u.setCorreo(rs.getString("correo"));
+                    return u;
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 }
