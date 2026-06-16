@@ -1,6 +1,10 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Clase   : Asiento
+ * Paquete : com.mycompany.proyecto_5.model
+ * Desc    : Representa un asiento fisico dentro de una sala de cine.
+ *           Contiene fila y numero para identificar su posicion exacta.
+ * Autor   : Grupo 8
+ * Fecha   : 12/06/2026
  */
 package com.mycompany.proyecto_5.model;
 

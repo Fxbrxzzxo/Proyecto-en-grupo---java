@@ -1,6 +1,10 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Clase   : Usuario
+ * Paquete : com.mycompany.proyecto_5.model
+ * Desc    : Entidad que representa a un cliente registrado en el sistema
+ *           de reservas de CineStar Barrio.
+ * Autor   : Grupo 8
+ * Fecha   : 12/06/2026
  */
 package com.mycompany.proyecto_5.model;
 

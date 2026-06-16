@@ -1,6 +1,10 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Clase   : Funcion
+ * Paquete : com.mycompany.proyecto_5.model
+ * Desc    : Representa una funcion cinematografica programada en una sala.
+ *           Relaciona pelicula, sala, fecha/hora y cupo disponible.
+ * Autor   : Grupo 8
+ * Fecha   : 12/06/2026
  */
 package com.mycompany.proyecto_5.model;
 import java.util.Date;

@@ -1,6 +1,10 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Clase   : ReservaService
+ * Paquete : com.mycompany.proyecto_5.service
+ * Desc    : Capa de servicio que coordina la logica de negocio para reservar
+ *           asientos. Verifica disponibilidad y ejecuta la transaccion completa.
+ * Autor   : Grupo 8
+ * Fecha   : 12/06/2026
  */
 package com.mycompany.proyecto_5.service;
 import com.mycompany.proyecto_5.dao.ReservaDAO;

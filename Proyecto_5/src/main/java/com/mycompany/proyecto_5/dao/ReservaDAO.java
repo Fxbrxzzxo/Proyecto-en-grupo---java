@@ -1,6 +1,10 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Clase   : ReservaDAO
+ * Paquete : com.mycompany.proyecto_5.dao
+ * Desc    : Acceso a datos para la entidad Reserva. Gestiona insercion,
+ *           cancelacion y consulta de reservas por usuario con detalle completo.
+ * Autor   : Grupo 8
+ * Fecha   : 12/06/2026
  */
 package com.mycompany.proyecto_5.dao;
 import com.mycompany.proyecto_5.util.ConexionBD;

@@ -1,6 +1,10 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Clase   : FuncionDAO
+ * Paquete : com.mycompany.proyecto_5.dao
+ * Desc    : Acceso a datos para la entidad Funcion. Permite listar funciones
+ *           con detalle de pelicula y sala, y obtener la sala de una funcion.
+ * Autor   : Grupo 8
+ * Fecha   : 12/06/2026
  */
 package com.mycompany.proyecto_5.dao;
 import com.mycompany.proyecto_5.util.ConexionBD;

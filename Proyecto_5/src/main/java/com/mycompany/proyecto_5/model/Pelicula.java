@@ -1,6 +1,10 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Clase   : Pelicula
+ * Paquete : com.mycompany.proyecto_5.model
+ * Desc    : Entidad que almacena la informacion basica de una pelicula
+ *           disponible en el catalogo de CineStar Barrio.
+ * Autor   : Grupo 8
+ * Fecha   : 12/06/2026
  */
 package com.mycompany.proyecto_5.model;
 

@@ -1,14 +1,15 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Clase   : Reserva
+ * Paquete : com.mycompany.proyecto_5.model
+ * Desc    : Representa la reserva de un asiento por parte de un usuario
+ *           para una funcion especifica. Incluye estado ACTIVA/CANCELADA.
+ * Autor   : Grupo 8
+ * Fecha   : 12/06/2026
  */
 package com.mycompany.proyecto_5.model;
 import java.util.Date;
 
-/**
- *
- * @author LENOVO
- */
+
 public class Reserva {
     private int idReserva;
     private int idUsuario;
