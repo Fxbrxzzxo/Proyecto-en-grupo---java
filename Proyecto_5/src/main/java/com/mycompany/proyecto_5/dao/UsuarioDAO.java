@@ -67,4 +67,28 @@ public class UsuarioDAO {
 
         return null;
     }
+    public boolean existeCorreo(String correo) {
+    String sql = "SELECT COUNT(*) FROM Usuario WHERE correo = ?";
+    try (Connection con = ConexionBD.getConexion();
+         PreparedStatement ps = con.prepareStatement(sql)) {
+        ps.setString(1, correo);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            return rs.getInt(1) > 0;
+        }
+    } catch (Exception e) { e.printStackTrace(); }
+    return false;
+}
+
+public boolean registrarUsuario(String nombre, String correo, String clave) {
+    String sql = "INSERT INTO Usuario (nombre, correo, clave) VALUES (?, ?, ?)";
+    try (Connection con = ConexionBD.getConexion();
+         PreparedStatement ps = con.prepareStatement(sql)) {
+        ps.setString(1, nombre);
+        ps.setString(2, correo);
+        ps.setString(3, clave);
+        return ps.executeUpdate() > 0;
+    } catch (Exception e) { e.printStackTrace(); }
+    return false;
+}
 }

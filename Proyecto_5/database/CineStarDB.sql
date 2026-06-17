@@ -66,7 +66,12 @@ CREATE TABLE HistorialCancelaciones (
 INSERT INTO Sala (nombre, capacidad) VALUES
 ('Sala 1', 90),
 ('Sala 2', 90),
-('Sala 3', 90);
+('Sala 3', 90),
+('Sala 4', 90),
+('Sala 5', 90),
+('Sala 6', 90),
+('Sala 7', 90),
+('Sala 8', 90);
 
 INSERT INTO Pelicula (titulo, duracionMin, clasificacion) VALUES
 ('Avengers', 180, 'PG13'),
@@ -85,7 +90,7 @@ INSERT INTO Usuario (nombre, correo, clave) VALUES ('Karla Sanchez', 'karla@emai
 
 DECLARE @sala INT = 1;
 
-WHILE @sala <= 3
+WHILE @sala <= 8
 BEGIN
     DECLARE @fila CHAR(1) = 'A';
     WHILE @fila <= 'J'

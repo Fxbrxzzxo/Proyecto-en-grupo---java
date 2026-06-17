@@ -77,4 +77,15 @@ public class FuncionDAO {
         } catch (Exception e) { e.printStackTrace(); }
         return -1;
     }
+    public boolean agregarFuncion(int idSala, int idPelicula, String fechaHora) {
+    String sql = "INSERT INTO Funcion (idSala, idPelicula, fechaHora, cupoDisponible) VALUES (?, ?, ?, 90)";
+    try (Connection con = ConexionBD.getConexion();
+         PreparedStatement ps = con.prepareStatement(sql)) {
+        ps.setInt(1, idSala);
+        ps.setInt(2, idPelicula);
+        ps.setString(3, fechaHora);
+        return ps.executeUpdate() > 0;
+    } catch (Exception e) { e.printStackTrace(); }
+    return false;
+}
 }
