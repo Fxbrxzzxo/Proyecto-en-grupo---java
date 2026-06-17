@@ -7,6 +7,7 @@
  * Fecha   : 12/06/2026
  */
 package com.mycompany.proyecto_5.view;
+import com.mycompany.proyecto_5.util.Sesion;
 
 /**
  *
@@ -22,8 +23,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
     public FrmPrincipal() {
         initComponents();
         setSize(790, 456);
-setLocationRelativeTo(null);
-setResizable(false);   
+        setLocationRelativeTo(null);
+        setResizable(false);
+        lblUsuario.setText("Bienvenido, " + Sesion.getUsuarioActual().getNombre());
 
     }
 
@@ -38,6 +40,7 @@ setResizable(false);
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        lblUsuario = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -64,21 +67,31 @@ setResizable(false);
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("CINESTAR");
 
+        lblUsuario.setFont(new java.awt.Font("Segoe UI", 3, 16)); // NOI18N
+        lblUsuario.setForeground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(306, 306, 306)
-                .addComponent(jLabel1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(306, 306, 306)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(329, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(180, 180, 180)
+                .addContainerGap()
+                .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addContainerGap(203, Short.MAX_VALUE))
+                .addGap(198, 198, 198))
         );
 
         jMenuBar1.setBackground(new java.awt.Color(255, 0, 0));
@@ -207,5 +220,6 @@ setResizable(false);
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblUsuario;
     // End of variables declaration//GEN-END:variables
 }

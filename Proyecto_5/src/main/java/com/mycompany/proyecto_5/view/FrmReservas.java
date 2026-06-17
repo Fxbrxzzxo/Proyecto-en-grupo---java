@@ -39,7 +39,7 @@ public class FrmReservas extends javax.swing.JFrame {
     private final ReservaDAO reservaDAO         = new ReservaDAO();
     private final ReservaService reservaService = new ReservaService();
  
-    private int asientoSeleccionadoId = -1;
+    private final List<Integer> asientosSeleccionados = new java.util.ArrayList<>();
     private final Map<Integer, javax.swing.JButton> botonesAsiento = new HashMap<>();
  
     private static final Color COLOR_LIBRE   = new Color(70, 180, 70);
@@ -238,7 +238,7 @@ public class FrmReservas extends javax.swing.JFrame {
          panelAsientos.setLayout(null);
         panelAsientos.removeAll();
         botonesAsiento.clear();
-        asientoSeleccionadoId = -1;
+        asientosSeleccionados.clear();
  
         int idFuncion = obtenerIdFuncionSeleccionada();
         if (idFuncion < 0) {
@@ -301,44 +301,65 @@ public class FrmReservas extends javax.swing.JFrame {
     }
     
      private void seleccionarAsiento(int idAsiento) {
-        if (asientoSeleccionadoId >= 0 && botonesAsiento.containsKey(asientoSeleccionadoId))
-            botonesAsiento.get(asientoSeleccionadoId).setBackground(COLOR_LIBRE);
-        asientoSeleccionadoId = idAsiento;
+         if (asientosSeleccionados.contains(idAsiento)) {
+        // deseleccionar
+        asientosSeleccionados.remove((Integer) idAsiento);
+        botonesAsiento.get(idAsiento).setBackground(COLOR_LIBRE);
+    } else {
+        // seleccionar
+        asientosSeleccionados.add(idAsiento);
         botonesAsiento.get(idAsiento).setBackground(COLOR_SELEC);
+    }
     }
      
       private void reservar() {
         int idFuncion = obtenerIdFuncionSeleccionada();
-        int idUsuario = obtenerIdUsuarioSeleccionado();
-        if (idFuncion < 0 || idUsuario < 0) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Selecciona función y usuario válidos.");
-            return;
-        }
-        if (asientoSeleccionadoId < 0) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Selecciona un asiento en el mapa.");
-            return;
-        }
-        String resultado = reservaService.reservarAsiento(idUsuario, idFuncion, asientoSeleccionadoId);
+    int idUsuario = obtenerIdUsuarioSeleccionado();
+    if (idFuncion < 0 || idUsuario < 0) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Selecciona función y usuario válidos.");
+        return;
+    }
+    if (asientosSeleccionados.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Selecciona al menos un asiento.");
+        return;
+    }
+    for (int idAsiento : asientosSeleccionados) {
+        String resultado = reservaService.reservarAsiento(idUsuario, idFuncion, idAsiento);
         javax.swing.JOptionPane.showMessageDialog(this, resultado);
-        actualizarPanelAsientos(); // refresca el mapa tras reservar
+    }
+    asientosSeleccionados.clear();
+    actualizarPanelAsientos();
     }
       
        private void cancelar() {
-        int idUsuario = obtenerIdUsuarioSeleccionado();
-        if (idUsuario < 0) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Selecciona un usuario válido.");
-            return;
-        }
-        String input = javax.swing.JOptionPane.showInputDialog(this, "ID de la reserva a cancelar:");
-        if (input == null || input.isBlank()) return;
-        try {
-            boolean ok = reservaDAO.cancelarReserva(Integer.parseInt(input.trim()), idUsuario);
-            javax.swing.JOptionPane.showMessageDialog(this,
-                ok ? "Reserva cancelada." : "No se pudo cancelar. Verifica el ID.");
-            actualizarPanelAsientos(); // refresca el mapa tras cancelar
-        } catch (NumberFormatException ex) {
-            javax.swing.JOptionPane.showMessageDialog(this, "ID inválido.");
-        }
+         int idUsuario = obtenerIdUsuarioSeleccionado();
+    int idFuncion = obtenerIdFuncionSeleccionada();
+    if (idUsuario < 0 || idFuncion < 0) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Selecciona función y usuario válidos.");
+        return;
+    }
+
+    List<String> reservas = reservaDAO.listarReservasActivas(idUsuario, idFuncion);
+    if (reservas.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this, "No tienes reservas activas en esta función.");
+        return;
+    }
+
+    String seleccion = (String) javax.swing.JOptionPane.showInputDialog(
+        this,
+        "Selecciona la reserva a cancelar:",
+        "Cancelar Reserva",
+        javax.swing.JOptionPane.PLAIN_MESSAGE,
+        null,
+        reservas.toArray(),
+        reservas.get(0)
+    );
+
+    if (seleccion == null) return;
+    int idReserva = Integer.parseInt(seleccion.split(" - ")[0].trim());
+    boolean ok = reservaDAO.cancelarReserva(idReserva, idUsuario);
+    javax.swing.JOptionPane.showMessageDialog(this, ok ? "Reserva cancelada." : "No se pudo cancelar.");
+    actualizarPanelAsientos();
     }
        
         private int obtenerIdFuncionSeleccionada() {
